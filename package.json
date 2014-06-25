@@ -1,0 +1,28 @@
+{
+  "name": "jsonapi-compliance",
+  "version": "0.0.0",
+  "description": "A test suite for checking jsonapi compliance for a particular endpoint",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/jsonapi-compliance.git"
+  },
+  "keywords": [
+    "jsonapi",
+    "json-api",
+    "test"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/jsonapi-compliance/issues"
+  },
+  "homepage": "https://github.com/DamonOehlman/jsonapi-compliance",
+  "dependencies": {
+    "supertest": "^0.13.0",
+    "tape": "^2.13.3"
+  }
+}
