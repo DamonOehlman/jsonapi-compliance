@@ -25,12 +25,21 @@ module.exports = function(opts, callback) {
   var stream = test.createStream({ objectMode: true });
   var url = ((opts || {}).url || '').replace(reTrailingSlash, '');
 
+  function endTest(err) {
+    if (callback) {
+      callback(err);
+    }
+
+    callback = undefined;
+  }
+
   stream
     .on('data', function(data) {
-      // TODO: report stuff nicely
-      console.log(data);
+      if (data.type === 'assert' && (! data.ok)) {
+        return endTest(new Error('not ok'));
+      }
     })
-    .on('end', callback);
+    .on('end', endTest);
 
   require('./tests/post-create')(url, test);
 };
