@@ -15,7 +15,9 @@ var reTrailingSlash = /\/$/;
   ## Schema Setup
 
   The tests that are run assume the schema (which is similar to what is
-  outlined in the jsonapi.org docs):
+  outlined in the jsonapi.org docs).
+
+  (to be completed).
 **/
 
 module.exports = function(opts, callback) {

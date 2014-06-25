@@ -4,8 +4,10 @@
   "description": "A test suite for checking jsonapi compliance for a particular endpoint",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gendocs": "gendocs > README.md"
   },
+  "stability": "experimental",
   "repository": {
     "type": "git",
     "url": "https://github.com/DamonOehlman/jsonapi-compliance.git"
