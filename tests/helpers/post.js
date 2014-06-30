@@ -1,6 +1,7 @@
 var request = require('hyperquest');
 var concat = require('concat-stream');
 var debug = require('debug')('jsonapi-compliance:get');
+var resOK = /^(2|3)\d{2}$/;
 
 module.exports = function(baseUrl) {
   return function(url, body, callback) {
@@ -13,6 +14,10 @@ module.exports = function(baseUrl) {
     });
 
     req.on('response', function(res) {
+      if (! resOK.test(res.statusCode)) {
+        return callback(null, res);
+      }
+
       res.pipe(concat(function(data){
         try {
           data = JSON.parse(data);

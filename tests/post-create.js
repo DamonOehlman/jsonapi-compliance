@@ -3,10 +3,18 @@ module.exports = function(url, test) {
   var get = require('./helpers/get')(url);
   var postId;
 
+  test('post data with no "posts" array fails', function(t) {
+    t.plan(2);
+    post('/posts', { title: 'This should fail' }, function(err, res, body) {
+      t.ifError(err);
+      t.equal(res.statusCode, 412);
+    });
+  });
+
   test('can create a new post', function(t) {
     t.plan(3);
-    post('/posts', { title: 'My experience with jsonapi' }, function(err, res, body) {
-      postId = body && body.id;
+    post('/posts', { posts: [{ title: 'My experience with jsonapi' }] }, function(err, res, body) {
+      postId = body && body.posts && body.posts[0] && body.posts[0].id;
 
       t.ifError(err);
       t.equal(res.statusCode, 201);
@@ -20,7 +28,7 @@ module.exports = function(url, test) {
     get('/posts/' + postId, function(err, res, body) {
       t.ifError(err);
       t.equal(res.statusCode, 200);
-      t.equal(body && body.title, 'My experience with jsonapi');
+      t.ok(Array.isArray(body && body.posts), 'got posts');
     });
   });
 };
