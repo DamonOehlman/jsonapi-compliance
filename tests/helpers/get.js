@@ -3,12 +3,11 @@ var concat = require('concat-stream');
 var debug = require('debug')('jsonapi-compliance:get');
 
 module.exports = function(baseUrl) {
-  return function(url, body, callback) {
+  return function(url, callback) {
     var req = request(baseUrl + url, {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Accept': 'application/vnd.api+json',
-        'Content-Type': 'application/vnd.api+json'
       }
     });
 
@@ -25,8 +24,7 @@ module.exports = function(baseUrl) {
       }));
     });
 
-    debug('POST ' + baseUrl + url);
-    req.write(typeof body == 'object' ? JSON.stringify(body) : body);
+    debug('GET ' + baseUrl + url);
     req.end();
   };
 };
