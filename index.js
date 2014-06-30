@@ -24,6 +24,7 @@ module.exports = function(opts, callback) {
   var test = tape.createHarness();
   var stream = test.createStream({ objectMode: true });
   var url = ((opts || {}).url || '').replace(reTrailingSlash, '');
+  var currentTest;
 
   function endTest(err) {
     if (callback) {
@@ -35,8 +36,12 @@ module.exports = function(opts, callback) {
 
   stream
     .on('data', function(data) {
+      if (data.type === 'test') {
+        return currentTest = data;
+      }
+
       if (data.type === 'assert' && (! data.ok)) {
-        return endTest(new Error('not ok'));
+        return endTest(data.error || new Error('not ok: ' + currentTest.name));
       }
     })
     .on('end', endTest);

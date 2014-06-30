@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/DamonOehlman/jsonapi-compliance",
   "dependencies": {
-    "supertest": "^0.13.0",
+    "concat-stream": "^1.4.6",
+    "hyperquest": "^0.3.0",
     "tape": "^2.13.3"
   }
 }

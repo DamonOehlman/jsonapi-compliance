@@ -1,16 +1,12 @@
 module.exports = function(url, test) {
-  var request = require('supertest')(url);
+  var post = require('./helpers/post')(url);
 
   test('can create a new post', function(t) {
-    t.plan(2);
-
-    request
-      .post('/post')
-      .send({ title: 'My experience with jsonapi' })
-      .expect(201)
-      .end(function(err, res) {
-        t.ifError(err);
-        t.ok(res.body && res.body.id, 'id generated');
-      });
+    t.plan(3);
+    post('/post', { title: 'My experience with jsonapi' }, function(err, res, body) {
+      t.ifError(err);
+      t.equal(res.statusCode, 201);
+      t.ok(body && body.id, 'id generated');
+    });
   });
 };
