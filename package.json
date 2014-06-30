@@ -1,6 +1,6 @@
 {
   "name": "jsonapi-compliance",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A test suite for checking jsonapi compliance for a particular endpoint",
   "main": "index.js",
   "scripts": {
