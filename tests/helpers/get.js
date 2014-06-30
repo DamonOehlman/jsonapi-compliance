@@ -25,6 +25,5 @@ module.exports = function(baseUrl) {
     });
 
     debug('GET ' + baseUrl + url);
-    req.end();
   };
 };
