@@ -46,5 +46,6 @@ module.exports = function(opts, callback) {
     })
     .on('end', endTest);
 
+  require('./tests/author-create')(url, test);
   require('./tests/post-create')(url, test);
 };
